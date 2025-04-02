@@ -1,15 +1,14 @@
-
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import TimeSelect from "@/components/TimeSelect";
 import DaySelect from "@/components/DaySelect";
+import TimeSelect from "@/components/TimeSelect";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import WakeUpModeSelect from "@/components/WakeUpModeSelect";
 import { useAlarms } from "@/context/AlarmContext";
-import { createAlarm } from "@/utils/alarmUtils";
 import { DayOfWeek, WakeUpMode } from "@/types/alarmTypes";
+import { createAlarm } from "@/utils/alarmUtils";
+import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateAlarmPage = () => {
   const navigate = useNavigate();
@@ -29,7 +28,9 @@ const CreateAlarmPage = () => {
   const handleSave = () => {
     const newAlarm = createAlarm(hours, minutes, name, days, wakeUpMode);
     addAlarm(newAlarm);
-    navigate("/");
+    setTimeout(() => {
+      navigate("/");
+    }, 0);
   };
 
   return (

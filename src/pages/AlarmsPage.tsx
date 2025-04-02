@@ -1,15 +1,19 @@
-
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import AlarmItem from "@/components/AlarmItem";
 import AddAlarmButton from "@/components/AddAlarmButton";
+import AlarmItem from "@/components/AlarmItem";
 import { useAlarms } from "@/context/AlarmContext";
 import { Alarm } from "@/types/alarmTypes";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AlarmsPage = () => {
   const navigate = useNavigate();
   const { alarms, toggleAlarm } = useAlarms();
   
+  useEffect(() => {
+    // 组件挂载时会自动执行一次
+    // alarms 变化时也会执行
+  }, [alarms]);
+
   const handleToggleAlarm = (id: string, enabled: boolean) => {
     toggleAlarm(id, enabled);
   };
